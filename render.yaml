@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: germanapp-server
+    env: node
+    region: oregon
+    buildCommand: "npm install"
+    startCommand: "node index.js"
+    rootDir: server
+    envVars:
+      - key: SUPABASE_URL
+        value: YOUR_SUPABASE_PROJECT_URL
+      - key: SUPABASE_SERVICE_ROLE
+        value: YOUR_SUPABASE_SERVICE_ROLE_KEY
+      - key: OPENAI_KEY
+        value: YOUR_OPENAI_KEY
+
+  - type: web
+    name: germanapp-client
+    env: static
+    rootDir: client
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "dist"
